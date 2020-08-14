@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidPaging</string>
+    <string name="sample_one">Sample One</string>
+    <string name="sample_two">Sample Two</string>
 </resources>
