@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.ui.networkonly
+package com.ransoft.androidpaging.ui.databaseonly
 
 import android.os.Bundle
 import android.util.Log
@@ -8,27 +8,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ransoft.androidpaging.MyApplication
 import com.ransoft.androidpaging.R
-import com.ransoft.androidpaging.databinding.NetworkOnlyFragmentBinding
+import com.ransoft.androidpaging.databinding.DatabaseOnlyFragmentBinding
 import com.ransoft.androidpaging.ui.PreviousRequestAdapter
 import javax.inject.Inject
 
-class NetworkOnlyFragment : Fragment() {
-
-    private lateinit var binding: NetworkOnlyFragmentBinding
+class DatabaseOnlyFragment : Fragment() {
+    private lateinit var binding: DatabaseOnlyFragmentBinding
     val previousRequestAdapter: PreviousRequestAdapter =
         PreviousRequestAdapter()
     @Inject
-    lateinit var viewModel: NetworkOnlyViewModel
+    lateinit var viewModel: DatabaseOnlyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity().application as MyApplication).appComponent.inject(this)
-        binding = DataBindingUtil.inflate(inflater, R.layout.network_only_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.database_only_fragment, container, false)
         return binding.root
     }
 
@@ -39,7 +40,7 @@ class NetworkOnlyFragment : Fragment() {
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = previousRequestAdapter
 
-        viewModel.getPreviousRequests().observe(requireActivity(), Observer {
+        viewModel.getPersonsLiveData().observe(requireActivity(), Observer {
             Log.d("API Frag", it.toString())
             previousRequestAdapter.submitList(it)
         })

@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.ui.networkonly
+package com.ransoft.androidpaging.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,19 +12,22 @@ import kotlinx.android.synthetic.main.previous_request_item.view.*
 
 
 class PreviousRequestAdapter :
-    PagedListAdapter<PreviousRequest, PreviousRequestAdapter.PreviousRequestViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<PreviousRequest, PreviousRequestAdapter.PreviousRequestViewHolder>(
+        DIFF_CALLBACK
+    ) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PreviousRequestAdapter.PreviousRequestViewHolder {
+    ): PreviousRequestViewHolder {
         return PreviousRequestViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.previous_request_item, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.previous_request_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(
-        holder: PreviousRequestAdapter.PreviousRequestViewHolder,
+        holder: PreviousRequestViewHolder,
         position: Int
     ) {
         val previousRequestEntitiy: PreviousRequest = getItem(position)!!

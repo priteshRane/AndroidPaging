@@ -11,12 +11,20 @@
         android:label="Main"
         tools:layout="@layout/main_fragment" >
         <action
-            android:id="@+id/action_mainFragment_to_networkOnlyFragment2"
+            android:id="@+id/action_mainFragment_to_networkOnlyFragment"
             app:destination="@id/networkOnlyFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_databaseOnlyFragment"
+            app:destination="@id/databaseOnlyFragment" />
     </fragment>
     <fragment
         android:id="@+id/networkOnlyFragment"
         android:name="com.ransoft.androidpaging.ui.networkonly.NetworkOnlyFragment"
         android:label="Network Only"
         tools:layout="@layout/network_only_fragment"/>
+    <fragment
+        android:id="@+id/databaseOnlyFragment"
+        android:name="com.ransoft.androidpaging.ui.databaseonly.DatabaseOnlyFragment"
+        android:label="Database Only"
+        tools:layout="@layout/database_only_fragment"/>
 </navigation>

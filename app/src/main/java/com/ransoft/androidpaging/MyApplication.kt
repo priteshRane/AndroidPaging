@@ -7,7 +7,6 @@ import com.ransoft.androidpaging.data.repositories.NetworkOnlyRepository
 import com.ransoft.androidpaging.di.component.AppComponent
 import com.ransoft.androidpaging.di.component.DaggerAppComponent
 import com.ransoft.androidpaging.di.module.RoomModule
-import com.ransoft.androidpaging.ui.networkonly.PreviousRequestAdapter
 
 open class MyApplication : Application() {
     val appComponent: AppComponent by lazy {

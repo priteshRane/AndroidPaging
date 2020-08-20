@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">AndroidPaging</string>
     <string name="network_only">Network Only</string>
-    <string name="sample_two">Sample Two</string>
+    <string name="database_only">Database Only</string>
 </resources>

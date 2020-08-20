@@ -5,6 +5,6 @@
         android:title="@string/network_only" />
 
     <item
-        android:id="@+id/sampleTwo"
-        android:title="@string/sample_two" />
+        android:id="@+id/databaseOnlyFragment"
+        android:title="@string/database_only" />
 </menu>

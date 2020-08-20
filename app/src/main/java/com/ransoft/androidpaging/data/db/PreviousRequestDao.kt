@@ -1,6 +1,7 @@
 package com.ransoft.androidpaging.data.db
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.ransoft.androidpaging.data.db.entities.PreviousRequest
 
@@ -18,4 +19,7 @@ interface PreviousRequestDao {
 
     @Query("SELECT COUNT(id) FROM previousrequest")
     suspend fun getPreviousRequestCount(): Int
+
+    @Query("SELECT * FROM previousrequest")
+    fun getAllPreviousRequestsFromDB(): DataSource.Factory<Int, PreviousRequest>
 }
