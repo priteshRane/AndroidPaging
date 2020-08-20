@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- solids that simulate shadow !-->
+    <item>
+        <shape>
+            <solid android:color="#04E0E0E0" />
+            <corners android:radius="@dimen/shadow_radius" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="#08E0E0E0" />
+            <corners android:radius="@dimen/shadow_radius" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="#12E0E0E0" />
+            <corners android:radius="@dimen/shadow_radius" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="#16E0E0E0" />
+            <corners android:radius="@dimen/shadow_radius" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="#20E0E0E0" />
+            <corners android:radius="@dimen/shadow_radius" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+        </shape>
+    </item>
+
+    <!-- main background !-->
+    <item>
+        <shape>
+            <solid android:color="#ffffff" />
+            <padding
+                android:bottom="2dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="2dp" />
+            <corners android:radius="@dimen/shadow_radius" />
+        </shape>
+    </item>
+</layer-list>

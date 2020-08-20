@@ -7,7 +7,7 @@ import javax.inject.Inject
 class NetworkOnlyRepository @Inject constructor(
     val myApi: MyApi
 ) {
-    suspend fun previousRequest(): PreviousRequestReponse {
-        return myApi.previousRequests(1, 10).body()!!
+    suspend fun previousRequestResponse(page: Int, pageSize: Int): PreviousRequestReponse {
+        return myApi.previousRequestResponse(page, pageSize).body()!!
     }
 }

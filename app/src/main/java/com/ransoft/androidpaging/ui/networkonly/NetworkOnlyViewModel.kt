@@ -1,27 +1,43 @@
 package com.ransoft.androidpaging.ui.networkonly
 
+import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PageKeyedDataSource
+import androidx.paging.PagedList
+import com.ransoft.androidpaging.data.model.PreviousRequest
 import com.ransoft.androidpaging.data.repositories.NetworkOnlyRepository
 import com.ransoft.androidpaging.util.Coroutines
 import com.ransoft.androidpaging.util.NoInternetException
 import javax.inject.Inject
 
 class NetworkOnlyViewModel @Inject constructor(
-    val sampleOneRepository: NetworkOnlyRepository
+    val previousRequestDataSource: PreviousRequestDataSource
 ): ViewModel() {
-    private val LOG_TAG_API = "API"
+    var previousRequestLiveData  : LiveData<PagedList<PreviousRequest>>
 
-    fun callPreviousRequestApi() {
-        Coroutines.main {
-            try {
-                val previousRequest = sampleOneRepository.previousRequest()
-                Log.d(LOG_TAG_API, "Previous request: " + previousRequest.previousRequests.get(1))
-            } catch (e: NoInternetException) {
-                Log.d(LOG_TAG_API, "NoInternetException in SampleOneViewModel: " + e)
-            } catch (e: Exception) {
-                Log.d(LOG_TAG_API, "Exception in SampleOneViewModel: " + e.toString())
+    init {
+        val config = PagedList.Config.Builder()
+            .setPageSize(10)
+            .setEnablePlaceholders(false)
+            .build()
+        previousRequestLiveData  = initializedPagedListBuilder(config).build()
+    }
+
+    fun getPreviousRequests():LiveData<PagedList<PreviousRequest>> = previousRequestLiveData
+
+    private fun initializedPagedListBuilder(config: PagedList.Config):
+            LivePagedListBuilder<Int, PreviousRequest> {
+
+        val dataSourceFactory = object : DataSource.Factory<Int, PreviousRequest>() {
+            override fun create(): DataSource<Int, PreviousRequest> {
+                return previousRequestDataSource
             }
         }
+        return LivePagedListBuilder<Int, PreviousRequest>(dataSourceFactory, config)
     }
 }

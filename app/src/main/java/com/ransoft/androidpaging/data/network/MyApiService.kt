@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class MyApiService @Inject constructor(networkConnectionInterceptor: NetworkConnectionInterceptor) : MyApi {
 
-    val baseUrl: String = "http://192.168.42.251:5000/"
+    val baseUrl: String = "https://asia-south1-testapis-286008.cloudfunctions.net/ampowerTestApis/"
 
     val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(networkConnectionInterceptor)
@@ -22,10 +22,10 @@ class MyApiService @Inject constructor(networkConnectionInterceptor: NetworkConn
         .build()
         .create(MyApi::class.java)
 
-    override suspend fun previousRequests(
+    override suspend fun previousRequestResponse(
         page: Int,
         pageSize: Int
     ): Response<PreviousRequestReponse> {
-        return api.previousRequests(page, pageSize)
+        return api.previousRequestResponse(page, pageSize)
     }
 }

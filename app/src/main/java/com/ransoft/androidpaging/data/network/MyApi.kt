@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface MyApi {
 
     @GET("previous-request/previousRequestsPagination")
-    suspend fun previousRequests(
+    suspend fun previousRequestResponse(
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int
     ): Response<PreviousRequestReponse>
