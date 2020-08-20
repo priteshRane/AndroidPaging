@@ -1,6 +1,6 @@
 package com.ransoft.androidpaging.data.network.responses
 
-import com.ransoft.androidpaging.data.model.PreviousRequest
+import com.ransoft.androidpaging.data.db.entities.PreviousRequest
 
 data class PreviousRequestReponse(
     val page: Int?,

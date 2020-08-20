@@ -1,6 +1,5 @@
 package com.ransoft.androidpaging.ui.networkonly
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +7,8 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ransoft.androidpaging.R
-import com.ransoft.androidpaging.data.model.PreviousRequest
+import com.ransoft.androidpaging.data.db.entities.PreviousRequest
 import kotlinx.android.synthetic.main.previous_request_item.view.*
-import java.lang.reflect.Array.get
 
 
 class PreviousRequestAdapter :
@@ -29,8 +27,8 @@ class PreviousRequestAdapter :
         holder: PreviousRequestAdapter.PreviousRequestViewHolder,
         position: Int
     ) {
-        val previousRequest: PreviousRequest = getItem(position)!!
-        holder.bind(previousRequest, position)
+        val previousRequestEntitiy: PreviousRequest = getItem(position)!!
+        holder.bind(previousRequestEntitiy, position)
     }
 
     class PreviousRequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -39,12 +37,12 @@ class PreviousRequestAdapter :
         val status = itemView.tv_status
 
         fun bind(
-            previousRequest: PreviousRequest,
+            previousRequestEntitiy: PreviousRequest,
             position: Int
         ) {
-            ticketNo.text = previousRequest.ticketNo
-            raisedOn.text = previousRequest.raisedOn
-            status.text = previousRequest.status
+            ticketNo.text = previousRequestEntitiy.ticketNo
+            raisedOn.text = previousRequestEntitiy.raisedOn
+            status.text = previousRequestEntitiy.status
         }
     }
 

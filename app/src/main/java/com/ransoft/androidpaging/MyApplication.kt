@@ -6,12 +6,14 @@ import com.ransoft.androidpaging.data.network.NetworkConnectionInterceptor
 import com.ransoft.androidpaging.data.repositories.NetworkOnlyRepository
 import com.ransoft.androidpaging.di.component.AppComponent
 import com.ransoft.androidpaging.di.component.DaggerAppComponent
+import com.ransoft.androidpaging.di.module.RoomModule
 import com.ransoft.androidpaging.ui.networkonly.PreviousRequestAdapter
 
-open class MyApplicatin : Application() {
+open class MyApplication : Application() {
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(
-            applicationContext
+            applicationContext,
+            RoomModule(this)
         )
     }
 
@@ -19,7 +21,11 @@ open class MyApplicatin : Application() {
         NetworkConnectionInterceptor(applicationContext)
     }
 
+    open val appDatabase by lazy {
+        RoomModule(this).provideAppDatabase()
+    }
+
     open val networkOnlyRepository by lazy {
-        NetworkOnlyRepository(MyApiService(networkConnectionInterceptor))
+        NetworkOnlyRepository(MyApiService(networkConnectionInterceptor), appDatabase)
     }
 }

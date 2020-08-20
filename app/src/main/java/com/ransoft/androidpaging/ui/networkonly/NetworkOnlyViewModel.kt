@@ -1,21 +1,16 @@
 package com.ransoft.androidpaging.ui.networkonly
 
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
-import androidx.paging.PageKeyedDataSource
 import androidx.paging.PagedList
-import com.ransoft.androidpaging.data.model.PreviousRequest
+import com.ransoft.androidpaging.data.db.entities.PreviousRequest
 import com.ransoft.androidpaging.data.repositories.NetworkOnlyRepository
-import com.ransoft.androidpaging.util.Coroutines
-import com.ransoft.androidpaging.util.NoInternetException
 import javax.inject.Inject
 
 class NetworkOnlyViewModel @Inject constructor(
+    val networkOnlyRepository: NetworkOnlyRepository,
     val previousRequestDataSource: PreviousRequestDataSource
 ): ViewModel() {
     var previousRequestLiveData  : LiveData<PagedList<PreviousRequest>>
@@ -28,8 +23,6 @@ class NetworkOnlyViewModel @Inject constructor(
         previousRequestLiveData  = initializedPagedListBuilder(config).build()
     }
 
-    fun getPreviousRequests():LiveData<PagedList<PreviousRequest>> = previousRequestLiveData
-
     private fun initializedPagedListBuilder(config: PagedList.Config):
             LivePagedListBuilder<Int, PreviousRequest> {
 
@@ -40,4 +33,6 @@ class NetworkOnlyViewModel @Inject constructor(
         }
         return LivePagedListBuilder<Int, PreviousRequest>(dataSourceFactory, config)
     }
+
+    fun getPreviousRequests():LiveData<PagedList<PreviousRequest>> = previousRequestLiveData
 }
