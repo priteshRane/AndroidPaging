@@ -1,7 +1,6 @@
-package com.ransoft.androidpaging.sampleone.data.network
+package com.ransoft.androidpaging.data.network
 
-import com.ransoft.androidpaging.sampleone.data.model.PreviousRequest
-import com.ransoft.androidpaging.sampleone.data.network.responses.PreviousRequestReponse
+import com.ransoft.androidpaging.data.network.responses.PreviousRequestReponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

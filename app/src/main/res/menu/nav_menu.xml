@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/sampleOneFragment"
-        android:title="@string/sample_one" />
+        android:id="@+id/networkOnlyFragment"
+        android:title="@string/network_only" />
 
     <item
         android:id="@+id/sampleTwo"

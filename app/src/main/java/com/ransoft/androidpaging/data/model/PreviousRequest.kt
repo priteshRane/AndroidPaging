@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.sampleone.data.model
+package com.ransoft.androidpaging.data.model
 
 data class PreviousRequest(
     var _id: String?,

@@ -11,12 +11,12 @@
         android:label="Main"
         tools:layout="@layout/main_fragment" >
         <action
-            android:id="@+id/action_mainFragment_to_sampleOne"
-            app:destination="@id/sampleOneFragment" />
+            android:id="@+id/action_mainFragment_to_networkOnlyFragment2"
+            app:destination="@id/networkOnlyFragment" />
     </fragment>
     <fragment
-        android:id="@+id/sampleOneFragment"
-        android:name="com.ransoft.androidpaging.sampleone.ui.SampleOneFragment"
-        android:label="Sample one"
-        tools:layout="@layout/sample_one_fragment" />
+        android:id="@+id/networkOnlyFragment"
+        android:name="com.ransoft.androidpaging.ui.networkonly.NetworkOnlyFragment"
+        android:label="Network Only"
+        tools:layout="@layout/network_only_fragment"/>
 </navigation>

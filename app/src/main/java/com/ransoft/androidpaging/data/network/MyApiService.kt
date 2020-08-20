@@ -1,12 +1,10 @@
-package com.ransoft.androidpaging.sampleone.data.network
+package com.ransoft.androidpaging.data.network
 
-import com.ransoft.androidpaging.sampleone.data.model.PreviousRequest
-import com.ransoft.androidpaging.sampleone.data.network.responses.PreviousRequestReponse
+import com.ransoft.androidpaging.data.network.responses.PreviousRequestReponse
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Query
 import javax.inject.Inject
 
 class MyApiService @Inject constructor(networkConnectionInterceptor: NetworkConnectionInterceptor) : MyApi {

@@ -1,6 +1,6 @@
-package com.ransoft.androidpaging.sampleone.data.network.responses
+package com.ransoft.androidpaging.data.network.responses
 
-import com.ransoft.androidpaging.sampleone.data.model.PreviousRequest
+import com.ransoft.androidpaging.data.model.PreviousRequest
 
 data class PreviousRequestReponse(
     val page: Int?,

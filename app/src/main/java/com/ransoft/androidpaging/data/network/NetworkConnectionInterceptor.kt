@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.sampleone.data.network
+package com.ransoft.androidpaging.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager

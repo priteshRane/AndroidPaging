@@ -1,16 +1,14 @@
-package com.ransoft.androidpaging.sampleone.ui
+package com.ransoft.androidpaging.ui.networkonly
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.ransoft.androidpaging.sampleone.data.model.PreviousRequest
-import com.ransoft.androidpaging.sampleone.data.repositories.SampleOneRepository
+import com.ransoft.androidpaging.data.repositories.NetworkOnlyRepository
 import com.ransoft.androidpaging.util.Coroutines
 import com.ransoft.androidpaging.util.NoInternetException
-import java.lang.Exception
 import javax.inject.Inject
 
-class SampleOneViewModel @Inject constructor(
-    val sampleOneRepository: SampleOneRepository
+class NetworkOnlyViewModel @Inject constructor(
+    val sampleOneRepository: NetworkOnlyRepository
 ): ViewModel() {
     private val LOG_TAG_API = "API"
 

@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.sampleone.ui
+package com.ransoft.androidpaging.ui.networkonly
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,28 +9,26 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ransoft.androidpaging.MyApplicatin
 import com.ransoft.androidpaging.R
-import com.ransoft.androidpaging.databinding.SampleOneFragmentBinding
+import com.ransoft.androidpaging.databinding.NetworkOnlyFragmentBinding
 import javax.inject.Inject
 
-class SampleOneFragment : Fragment() {
+class NetworkOnlyFragment : Fragment() {
 
-    private lateinit var binding: SampleOneFragmentBinding
+    private lateinit var binding: NetworkOnlyFragmentBinding
 
     @Inject
-    lateinit var viewModel: SampleOneViewModel
+    lateinit var viewModel: NetworkOnlyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity().application as MyApplicatin).appComponent.inject(this)
-        binding =  DataBindingUtil.inflate(inflater, R.layout.sample_one_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.network_only_fragment, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        viewModel.callPreviousRequestApi()
     }
 }

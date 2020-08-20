@@ -1,8 +1,8 @@
-package com.ransoft.androidpaging.sampleone.di.component
+package com.ransoft.androidpaging.di.component
 
 import android.content.Context
-import com.ransoft.androidpaging.sampleone.di.module.NetworkModule
-import com.ransoft.androidpaging.sampleone.ui.SampleOneFragment
+import com.ransoft.androidpaging.di.module.NetworkModule
+import com.ransoft.androidpaging.ui.networkonly.NetworkOnlyFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -14,5 +14,5 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
-    fun inject(sampleOneFragment: SampleOneFragment)
+    fun inject(networkOnlyFragment: NetworkOnlyFragment)
 }
