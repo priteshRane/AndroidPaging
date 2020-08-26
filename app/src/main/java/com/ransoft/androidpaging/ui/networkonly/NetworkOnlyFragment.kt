@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ransoft.androidpaging.MyApplication
 import com.ransoft.androidpaging.R
 import com.ransoft.androidpaging.databinding.NetworkOnlyFragmentBinding
-import com.ransoft.androidpaging.ui.PreviousRequestAdapter
+import com.ransoft.androidpaging.ui.ItemAdapter
 import javax.inject.Inject
 
 class NetworkOnlyFragment : Fragment() {
 
     private lateinit var binding: NetworkOnlyFragmentBinding
-    val previousRequestAdapter: PreviousRequestAdapter =
-        PreviousRequestAdapter()
+    val itemAdapter: ItemAdapter =
+        ItemAdapter()
     @Inject
     lateinit var viewModel: NetworkOnlyViewModel
 
@@ -37,11 +37,11 @@ class NetworkOnlyFragment : Fragment() {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = previousRequestAdapter
+        binding.recyclerView.adapter = itemAdapter
 
-        viewModel.getPreviousRequests().observe(requireActivity(), Observer {
+        viewModel.getItem().observe(requireActivity(), Observer {
             Log.d("API Frag", it.toString())
-            previousRequestAdapter.submitList(it)
+            itemAdapter.submitList(it)
         })
     }
 }

@@ -1,15 +1,18 @@
 package com.ransoft.androidpaging.data.network
 
-import com.ransoft.androidpaging.data.network.responses.PreviousRequestReponse
+import com.ransoft.androidpaging.data.network.responses.ItemReponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MyApi {
 
-    @GET("previous-request/previousRequestsPagination")
-    suspend fun previousRequestResponse(
+    @GET("2.2/answers")
+    suspend fun itemResponse(
         @Query("page") page: Int,
-        @Query("pageSize") pageSize: Int
-    ): Response<PreviousRequestReponse>
+        @Query("pagesize") pagesize: Int,
+        @Query("order") order: String,
+        @Query("sort") sort: String,
+        @Query("site") site: String
+    ): Response<ItemReponse>
 }

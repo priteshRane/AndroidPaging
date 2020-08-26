@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_databaseOnlyFragment"
             app:destination="@id/databaseOnlyFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_networkAndDatabaseFragment"
+            app:destination="@id/networkAndDatabaseFragment" />
     </fragment>
     <fragment
         android:id="@+id/networkOnlyFragment"
@@ -26,5 +29,10 @@
         android:id="@+id/databaseOnlyFragment"
         android:name="com.ransoft.androidpaging.ui.databaseonly.DatabaseOnlyFragment"
         android:label="Database Only"
+        tools:layout="@layout/database_only_fragment"/>
+    <fragment
+        android:id="@+id/networkAndDatabaseFragment"
+        android:name="com.ransoft.androidpaging.ui.networkanddatabase.NetworkAndDatabaseFragment"
+        android:label="Network And Database"
         tools:layout="@layout/database_only_fragment"/>
 </navigation>

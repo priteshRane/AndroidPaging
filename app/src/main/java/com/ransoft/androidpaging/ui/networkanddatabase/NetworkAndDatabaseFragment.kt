@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.ui.databaseonly
+package com.ransoft.androidpaging.ui.networkanddatabase
 
 import android.os.Bundle
 import android.util.Log
@@ -11,23 +11,24 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ransoft.androidpaging.MyApplication
 import com.ransoft.androidpaging.R
-import com.ransoft.androidpaging.databinding.DatabaseOnlyFragmentBinding
+import com.ransoft.androidpaging.databinding.NetworkAndDatabaseFragmentBinding
 import com.ransoft.androidpaging.ui.ItemAdapter
 import javax.inject.Inject
 
-class DatabaseOnlyFragment : Fragment() {
-    private lateinit var binding: DatabaseOnlyFragmentBinding
+class NetworkAndDatabaseFragment : Fragment() {
+
+    private lateinit var binding: NetworkAndDatabaseFragmentBinding
     val itemAdapter: ItemAdapter =
         ItemAdapter()
     @Inject
-    lateinit var viewModel: DatabaseOnlyViewModel
+    lateinit var viewModel: NetworkAndDatabaseViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity().application as MyApplication).appComponent.inject(this)
-        binding = DataBindingUtil.inflate(inflater, R.layout.database_only_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.network_and_database_fragment, container, false)
         return binding.root
     }
 
@@ -35,7 +36,6 @@ class DatabaseOnlyFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = itemAdapter
 
         viewModel.getPersonsLiveData().observe(requireActivity(), Observer {

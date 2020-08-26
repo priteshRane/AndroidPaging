@@ -2,5 +2,6 @@
     <string name="app_name">AndroidPaging</string>
     <string name="network_only">Network Only</string>
     <string name="database_only">Database Only</string>
+    <string name="network_and_database_only">Network &amp; Datbase</string>
     <string name="database_only_note">Note: Go to network only to fill database with API data</string>
 </resources>

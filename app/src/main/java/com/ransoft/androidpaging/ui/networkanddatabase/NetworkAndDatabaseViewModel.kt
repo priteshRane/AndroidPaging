@@ -1,4 +1,4 @@
-package com.ransoft.androidpaging.ui.databaseonly
+package com.ransoft.androidpaging.ui.networkanddatabase
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import com.ransoft.androidpaging.data.db.AppDatabase
 import com.ransoft.androidpaging.data.db.entities.Item
 import javax.inject.Inject
 
-class DatabaseOnlyViewModel @Inject constructor(appDatabase: AppDatabase) : ViewModel() {
+class NetworkAndDatabaseViewModel @Inject constructor(appDatabase: AppDatabase, itemBoundaryCallback: ItemBoundaryCallback) : ViewModel() {
     private var personsLiveData: LiveData<PagedList<Item>>
 
     init {
@@ -18,7 +18,7 @@ class DatabaseOnlyViewModel @Inject constructor(appDatabase: AppDatabase) : View
 
         val pagedListBuilder: LivePagedListBuilder<Int, Item> = LivePagedListBuilder<Int, Item>(factory,
             10)
-        personsLiveData = pagedListBuilder.build()
+        personsLiveData = pagedListBuilder.setBoundaryCallback(itemBoundaryCallback).build()
     }
 
     fun getPersonsLiveData() = personsLiveData

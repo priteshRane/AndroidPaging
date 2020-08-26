@@ -23,5 +23,5 @@ class RoomModule(myApplication: MyApplication) {
     }
 
     @Provides
-    fun providePreviousRequestDao(appDatabase: AppDatabase) = appDatabase.previousRequestDao()
+    fun provideItemDao(appDatabase: AppDatabase) = appDatabase.itemDao()
 }
