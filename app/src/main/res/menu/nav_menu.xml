@@ -7,8 +7,4 @@
     <item
         android:id="@+id/databaseOnlyFragment"
         android:title="@string/database_only" />
-
-    <item
-        android:id="@+id/networkAndDatabaseFragment"
-        android:title="@string/network_and_database_only" />
 </menu>
