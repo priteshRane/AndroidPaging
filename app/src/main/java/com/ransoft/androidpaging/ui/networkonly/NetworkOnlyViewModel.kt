@@ -5,34 +5,34 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.ransoft.androidpaging.data.db.entities.Item
-import com.ransoft.androidpaging.data.repositories.ItemRepository
+import com.ransoft.androidpaging.data.db.entities.Movie
+import com.ransoft.androidpaging.data.repositories.MovieRepository
 import javax.inject.Inject
 
 class NetworkOnlyViewModel @Inject constructor(
-    val itemRepository: ItemRepository,
-    val itemDataSource: ItemDataSource
+    val movieRepository: MovieRepository,
+    val movieDataSource: MovieDataSource
 ): ViewModel() {
-    var itemLiveData  : LiveData<PagedList<Item>>
+    var movieLiveData  : LiveData<PagedList<Movie>>
 
     init {
         val config = PagedList.Config.Builder()
             .setPageSize(10)
             .setEnablePlaceholders(false)
             .build()
-        itemLiveData  = initializedPagedListBuilder(config).build()
+        movieLiveData  = initializedPagedListBuilder(config).build()
     }
 
     private fun initializedPagedListBuilder(config: PagedList.Config):
-            LivePagedListBuilder<Int, Item> {
+            LivePagedListBuilder<Int, Movie> {
 
-        val dataSourceFactory = object : DataSource.Factory<Int, Item>() {
-            override fun create(): DataSource<Int, Item> {
-                return itemDataSource
+        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
+            override fun create(): DataSource<Int, Movie> {
+                return movieDataSource
             }
         }
-        return LivePagedListBuilder<Int, Item>(dataSourceFactory, config)
+        return LivePagedListBuilder<Int, Movie>(dataSourceFactory, config)
     }
 
-    fun getItem():LiveData<PagedList<Item>> = itemLiveData
+    fun getMovies():LiveData<PagedList<Movie>> = movieLiveData
 }

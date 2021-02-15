@@ -4,4 +4,9 @@
     <string name="database_only">Database Only</string>
     <string name="network_and_database_only">Network &amp; Datbase</string>
     <string name="database_only_note">Note: Go to network only to fill database with API data</string>
+    <string name="movie_name">Movie name</string>
+    <string name="rating">Rating</string>
+    <string name="directors">Directors</string>
+    <string name="duration">Duration</string>
+    <string name="add_movie">Add Movie</string>
 </resources>

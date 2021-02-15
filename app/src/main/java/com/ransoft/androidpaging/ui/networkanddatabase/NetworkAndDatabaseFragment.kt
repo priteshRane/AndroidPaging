@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ransoft.androidpaging.MyApplication
 import com.ransoft.androidpaging.R
 import com.ransoft.androidpaging.databinding.NetworkAndDatabaseFragmentBinding
-import com.ransoft.androidpaging.ui.ItemAdapter
+import com.ransoft.androidpaging.ui.MovieAdapter
 import javax.inject.Inject
 
 class NetworkAndDatabaseFragment : Fragment() {
 
     private lateinit var binding: NetworkAndDatabaseFragmentBinding
-    val itemAdapter: ItemAdapter =
-        ItemAdapter()
+    val movieAdapter: MovieAdapter =
+        MovieAdapter()
     @Inject
     lateinit var viewModel: NetworkAndDatabaseViewModel
 
@@ -36,11 +36,11 @@ class NetworkAndDatabaseFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        binding.recyclerView.adapter = itemAdapter
+        binding.recyclerView.adapter = movieAdapter
 
         viewModel.getPersonsLiveData().observe(requireActivity(), Observer {
             Log.d("API Frag", it.toString())
-            itemAdapter.submitList(it)
+            movieAdapter.submitList(it)
         })
     }
 }

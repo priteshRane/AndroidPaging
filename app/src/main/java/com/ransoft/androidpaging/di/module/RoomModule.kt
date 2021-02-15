@@ -23,5 +23,5 @@ class RoomModule(myApplication: MyApplication) {
     }
 
     @Provides
-    fun provideItemDao(appDatabase: AppDatabase) = appDatabase.itemDao()
+    fun provideItemDao(appDatabase: AppDatabase) = appDatabase.movieDao()
 }

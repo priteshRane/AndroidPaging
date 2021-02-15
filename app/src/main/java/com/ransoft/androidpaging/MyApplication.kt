@@ -3,7 +3,7 @@ package com.ransoft.androidpaging
 import android.app.Application
 import com.ransoft.androidpaging.data.network.MyApiService
 import com.ransoft.androidpaging.data.network.NetworkConnectionInterceptor
-import com.ransoft.androidpaging.data.repositories.ItemRepository
+import com.ransoft.androidpaging.data.repositories.MovieRepository
 import com.ransoft.androidpaging.di.component.AppComponent
 import com.ransoft.androidpaging.di.component.DaggerAppComponent
 import com.ransoft.androidpaging.di.module.RoomModule
@@ -25,6 +25,6 @@ open class MyApplication : Application() {
     }
 
     open val networkOnlyRepository by lazy {
-        ItemRepository(MyApiService(networkConnectionInterceptor), appDatabase)
+        MovieRepository(MyApiService(networkConnectionInterceptor), appDatabase)
     }
 }

@@ -2,14 +2,14 @@ package com.ransoft.androidpaging.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.ransoft.androidpaging.data.db.entities.Item
+import com.ransoft.androidpaging.data.db.entities.Movie
 
 @Database(
-    entities = [Item::class],
-    version = 2,
+    entities = [Movie::class],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun itemDao(): ItemDao
+    abstract fun movieDao(): MovieDao
 }

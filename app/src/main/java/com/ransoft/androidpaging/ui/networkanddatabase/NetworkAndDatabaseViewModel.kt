@@ -6,24 +6,24 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.ransoft.androidpaging.data.db.AppDatabase
-import com.ransoft.androidpaging.data.db.entities.Item
+import com.ransoft.androidpaging.data.db.entities.Movie
 import javax.inject.Inject
 
 class NetworkAndDatabaseViewModel @Inject constructor(
     appDatabase: AppDatabase,
-    itemBoundaryCallback: ItemBoundaryCallback
+    movieBoundaryCallback: MovieBoundaryCallback
 ) : ViewModel() {
-    private var personsLiveData: LiveData<PagedList<Item>>
+    private var personsLiveData: LiveData<PagedList<Movie>>
 
     init {
-        val factory: DataSource.Factory<Int, Item> =
-            appDatabase.itemDao().getAllItemFromDB()
+        val factory: DataSource.Factory<Int, Movie> =
+            appDatabase.movieDao().getAllMoviesFromDB()
 
-        val pagedListBuilder: LivePagedListBuilder<Int, Item> = LivePagedListBuilder<Int, Item>(
+        val pagedListBuilder: LivePagedListBuilder<Int, Movie> = LivePagedListBuilder<Int, Movie>(
             factory,
             10
         )
-        personsLiveData = pagedListBuilder.setBoundaryCallback(itemBoundaryCallback).build()
+        personsLiveData = pagedListBuilder.setBoundaryCallback(movieBoundaryCallback).build()
     }
 
     fun getPersonsLiveData() = personsLiveData

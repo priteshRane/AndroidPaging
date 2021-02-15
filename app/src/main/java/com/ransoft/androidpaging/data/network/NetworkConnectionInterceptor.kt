@@ -2,16 +2,16 @@ package com.ransoft.androidpaging.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import com.ransoft.androidpaging.util.NoInternetException
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
 class NetworkConnectionInterceptor @Inject constructor(
-    context: Context
+    val context: Context
 ) : Interceptor {
-
-    private val applicationContext = context
 
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isInternetAvailable())
@@ -21,8 +21,20 @@ class NetworkConnectionInterceptor @Inject constructor(
     }
 
     private fun isInternetAvailable(): Boolean {
-        val connectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwrk = connectivityManager.activeNetworkInfo
-        return activeNetwrk?.isConnectedOrConnecting == true
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+                else -> false
+            }
+        } else {
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            return networkInfo.isConnected
+        }
     }
 }
