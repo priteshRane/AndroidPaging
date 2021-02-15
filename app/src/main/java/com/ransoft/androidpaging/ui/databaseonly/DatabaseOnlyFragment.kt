@@ -9,16 +9,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ransoft.androidpaging.MyApplication
 import com.ransoft.androidpaging.R
 import com.ransoft.androidpaging.data.db.entities.Movie
 import com.ransoft.androidpaging.databinding.DatabaseOnlyFragmentBinding
 import com.ransoft.androidpaging.ui.MovieAdapter
 import com.ransoft.androidpaging.ui.MovieInterface
+import com.ransoft.androidpaging.ui.SwipeToDeleteCallback
 import com.ransoft.androidpaging.util.Coroutines
 import com.ransoft.androidpaging.util.toast
 import kotlinx.android.synthetic.main.database_only_fragment.*
+import kotlinx.android.synthetic.main.database_only_fragment.view.*
 import javax.inject.Inject
 
 class DatabaseOnlyFragment : Fragment(), MovieInterface {
@@ -43,6 +47,20 @@ class DatabaseOnlyFragment : Fragment(), MovieInterface {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.adapter = movieAdapter
+
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val movie = movieAdapter.getMovie(position)
+                Coroutines.main {
+                    viewModel.removeMovie(movie._id)
+                    requireActivity().toast("Movie removed!")
+                }
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
         viewModel.getPersonsLiveData().observe(requireActivity(), Observer {
             Log.d("API Frag", it.toString())

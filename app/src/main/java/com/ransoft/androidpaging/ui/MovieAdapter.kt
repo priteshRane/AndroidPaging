@@ -49,6 +49,10 @@ class MovieAdapter(private val movieInterface: MovieInterface) :
         }
     }
 
+    fun getMovie(position: Int) : Movie {
+        return getItem(position)!!
+    }
+
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val moviePoster = itemView.iv_movie_poster
         val movieName = itemView.tv_movie_name
