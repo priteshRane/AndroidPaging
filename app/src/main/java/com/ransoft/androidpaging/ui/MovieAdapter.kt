@@ -13,7 +13,7 @@ import com.ransoft.androidpaging.data.db.entities.Movie
 import kotlinx.android.synthetic.main.movie_card.view.*
 
 lateinit var context: Context
-class MovieAdapter :
+class MovieAdapter(private val movieInterface: MovieInterface) :
     PagedListAdapter<Movie, MovieAdapter.MovieViewHolder>(
         DIFF_CALLBACK
     ) {
@@ -44,9 +44,9 @@ class MovieAdapter :
         holder.rating.text = movieEntity.rating.toString()
         holder.directors.text = movieEntity.directors
         holder.duration.text = movieEntity.duration
-//        holder.moviePoster.setOnClickListener {
-//            movieClickListener.onMovieClick(it, movieEntity)
-//        }
+        holder.deleteMovie.setOnClickListener {
+            movieInterface.onDelete(it, movieEntity)
+        }
     }
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,6 +55,7 @@ class MovieAdapter :
         val rating = itemView.tv_rating
         val directors = itemView.tv_directors
         val duration = itemView.tv_duration
+        val deleteMovie = itemView.iv_delete
     }
 
     companion object {

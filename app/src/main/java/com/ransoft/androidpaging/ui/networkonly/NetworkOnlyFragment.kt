@@ -11,15 +11,17 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ransoft.androidpaging.MyApplication
 import com.ransoft.androidpaging.R
+import com.ransoft.androidpaging.data.db.entities.Movie
 import com.ransoft.androidpaging.databinding.NetworkOnlyFragmentBinding
 import com.ransoft.androidpaging.ui.MovieAdapter
+import com.ransoft.androidpaging.ui.MovieInterface
 import javax.inject.Inject
 
-class NetworkOnlyFragment : Fragment() {
+class NetworkOnlyFragment : Fragment(), MovieInterface {
 
     private lateinit var binding: NetworkOnlyFragmentBinding
     val movieAdapter: MovieAdapter =
-        MovieAdapter()
+        MovieAdapter(this)
     @Inject
     lateinit var viewModel: NetworkOnlyViewModel
 
@@ -43,5 +45,9 @@ class NetworkOnlyFragment : Fragment() {
             Log.d("API Frag", it.toString())
             movieAdapter.submitList(it)
         })
+    }
+
+    override fun onDelete(view: View, movie: Movie) {
+        TODO("Not yet implemented")
     }
 }

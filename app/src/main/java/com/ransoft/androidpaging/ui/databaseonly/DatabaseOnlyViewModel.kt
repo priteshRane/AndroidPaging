@@ -9,7 +9,7 @@ import com.ransoft.androidpaging.data.db.AppDatabase
 import com.ransoft.androidpaging.data.db.entities.Movie
 import javax.inject.Inject
 
-class DatabaseOnlyViewModel @Inject constructor(appDatabase: AppDatabase) : ViewModel() {
+class DatabaseOnlyViewModel @Inject constructor(val appDatabase: AppDatabase) : ViewModel() {
     private var personsLiveData: LiveData<PagedList<Movie>>
 
     init {
@@ -22,4 +22,8 @@ class DatabaseOnlyViewModel @Inject constructor(appDatabase: AppDatabase) : View
     }
 
     fun getPersonsLiveData() = personsLiveData
+
+    suspend fun addMovie(movie: Movie) = appDatabase.movieDao().addMovie(movie)
+
+    suspend fun removeMovie(id: String) = appDatabase.movieDao().removeMovie(id)
 }
